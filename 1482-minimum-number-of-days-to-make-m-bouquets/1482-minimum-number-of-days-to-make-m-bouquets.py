@@ -1,28 +1,28 @@
 class Solution:
-    def minDays(self, A: List[int], m: int, k: int) -> int:
-        def isFeasible(x):
-            aj_flw = count_flw =0
-            
-            for i in A:
-                if x>=i:
-                    aj_flw += 1
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+        if(len(bloomDay) < m*k):
+            return -1
+        l = min(bloomDay)
+        r = max(bloomDay)
+        while(l<r):
+            mid = (l+r) // 2
+            maxx = 0
+            count = 0
+            bq = 0
+            for i in bloomDay:
+                if i <= mid:
+                    count+=1
                 else:
-                    aj_flw = 0
-                if aj_flw == k:
-                    count_flw += 1 
-                    aj_flw = 0
-            return count_flw >=m
-                    
-        if len(A)<m*k: return -1 
-        l,r = 1,max(A) 
-        
-        while l<=r:
-            mid = l+(r-l)//2 
-            if isFeasible(mid):
-                r = mid - 1 
+                    count = 0   
+                if (count == k):
+                    bq +=1
+                    count = 0
+            
+            if bq >= m:
+                r = mid
             else:
-                l = mid + 1
-                 
+                l = mid +1 
         return l
+        
                     
         
