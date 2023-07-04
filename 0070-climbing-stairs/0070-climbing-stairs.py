@@ -10,17 +10,7 @@ class Solution:
             curr = ans
             
         return ans
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+              
         
 #         dictt = {}
 #         def solve(i):
