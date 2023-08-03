@@ -1,23 +1,17 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-
         n = len(nums)
         ans = []
-        nums.sort()
-        use = [0] * n
-        
-        def permute(comb, use, i):
+        def solve(i,path):
             if i == n:
-                ans.append(comb[:])
-            for j in range(n):
-                if not use[j]:
-                    comb.append(nums[j])
-                    use[j] = 1
-                    permute(comb,use,i+1)
-                    use[j] = 0
-                    comb.pop()
-
-        permute([],use,0)
+                ans.append(path[:])
+                return
+            for j in nums:
+                if j not in path:
+                    path.append(j)
+                    solve(i+1,path)
+                    path.pop()
+        solve(0,[])
         return ans
-                
+            
         
