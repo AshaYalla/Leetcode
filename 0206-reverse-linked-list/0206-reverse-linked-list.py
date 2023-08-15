@@ -16,32 +16,14 @@ class Solution:
                 node.next = None
                 return h
             return solve(head)
-                
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # cur = head
-        # prev = None
-        # while(cur):
-        #     nxt = cur.next
-        #     cur.next = prev
-        #     prev = cur
-        #     cur = nxt
+        # # cur = head
+        # # prev = None
+        # # while(cur):
+        # #     nxt = cur.next
+        # #     cur.next = prev
+        # #     prev = cur
+        # #     cur = nxt
         # return prev
         
             
