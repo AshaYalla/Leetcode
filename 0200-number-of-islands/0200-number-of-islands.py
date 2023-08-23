@@ -22,17 +22,8 @@ class Solution:
                             visited.add((r+a,c+b))
                             
         return iland
-    
-    
-    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-            # rl = len(grid)
+       
+        # rl = len(grid)
 #         cl = len(grid[0])
         
 #         def dfs(r,c):
