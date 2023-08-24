@@ -5,25 +5,22 @@ class Node:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 """
-    
+
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
-        if not node:
-            return None
-        new = dict()
-        new[node] = Node(node.val, [])
+        if node == None:
+            return node
+        visited = {}
         queue = [node]
-        while(queue):
-            popp = queue.pop(0)
-            for i in popp.neighbors:
-                if i not in new:
-                    new[i] = Node(i.val,[])
-                    queue.append(i)
-                new[popp].neighbors.append(new[i])
-                
-        return new[node]
-            
-            
-            
+        visited[node] = Node(node.val,[])
+        while queue:
+            n = queue.pop(0)
+            for child in n.neighbors:
+                if child not in visited:
+                    visited[child] = Node(child.val,[])
+                    queue.append(child)
+                visited[n].neighbors.append(visited[child])
+        return visited[node]
+                    
             
         
