@@ -1,50 +1,27 @@
-from collections import deque
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        def valid(row, col):
-            return 0 <= row < m and 0 <= col < n
-        
-        matrix = [row[:] for row in mat]
-        m = len(matrix)
-        n = len(matrix[0])
-        queue = deque()
+        m = len(mat)
+        n = len(mat[0])
+        visited = [[0 for i in range(n)] for j in range(m)]
+        queue = []
         seen = set()
+        nei = [(1,0),(0,1),(-1,0),(0,-1)]
         
-        for row in range(m):
-            for col in range(n):
-                if matrix[row][col] == 0:
-                    queue.append((row, col, 0))
-                    seen.add((row, col))
-        
-        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-
-        while queue:
-            row, col, steps = queue.popleft()
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j] == 0:
+                    queue.append((i,j,0))
+                    seen.add((i,j))
+        while(queue):
+            r,c,dis = queue.pop(0)
+            for nr,nc in nei:
+                if r+nr >=0 and r+nr < m and c+nc >=0 and c+nc < n and (r+nr, c+nc) not in seen:
+                    seen.add((r+nr, c+nc))
+                    queue.append((r+nr,c+nc,dis+1))
+                    mat[r+nr][c+nc] = dis+1
+        return mat
+                
             
-            for dx, dy in directions:
-                next_row, next_col = row + dy, col + dx
-                if (next_row, next_col) not in seen and valid(next_row, next_col):
-                    seen.add((next_row, next_col))
-                    queue.append((next_row, next_col, steps + 1))
-                    matrix[next_row][next_col] = steps + 1
-        
-        return matrix
-#         matrix = [row[:] for row in mat]
-#         visited = set()
-#         queue = deque()
-        
-#         for row in range(len(mat)):
-#             for col in range(len(mat[0])):
-#                 if matrix[row][col] == 0:
-#                     queue.append((row,col,0))
-#                     visited.append((row,col))
-#         directions =[(0,1),(1,0),(-1,0),(0,-1)]
-        
-#         while queue:
-#             row,col,dis = queue.popleft()
-#             for x,y in directions:
-#                 nrow,ncol = (row+x,col+y)
-
-
+                
                 
         
