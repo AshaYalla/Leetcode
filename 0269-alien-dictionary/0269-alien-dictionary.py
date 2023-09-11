@@ -41,9 +41,7 @@ class Solution:
                 if indegree[nei] == 0:
                     q.append(nei)
                     
-        print(ans,graph)
-        print(len(ans))
-        print(len(indegree))
+
   
         if len(ans) != len(indegree):
             return ""
