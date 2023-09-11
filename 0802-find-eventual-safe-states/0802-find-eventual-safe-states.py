@@ -14,6 +14,7 @@ class Solution:
             visited.add(i)
             pathvis.add(i)
             for nei in graph[i]:
+                
                 if not dfs(nei):
                     return False
             pathvis.remove(i)    
@@ -21,7 +22,8 @@ class Solution:
             return True
         
         for i in range(len(graph)):
-            dfs(i)
+            if i not in visited:
+                dfs(i)
         ans = []
         print(res)
         for i in range(len(res)):
