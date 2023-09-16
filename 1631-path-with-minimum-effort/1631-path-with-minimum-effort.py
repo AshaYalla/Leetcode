@@ -18,6 +18,7 @@ class Solution:
                     diff = abs(heights[x+nx][y+ny] - heights[x][y])
                     maxdiff = max(diff,dis[x][y])
                     if dis[x+nx][y+ny] > maxdiff:
+
                         dis[x+nx][y+ny]  = maxdiff
                         heapq.heappush(
                             q,(maxdiff, x+nx,y+ny))
