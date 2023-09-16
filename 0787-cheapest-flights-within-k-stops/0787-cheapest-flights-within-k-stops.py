@@ -19,8 +19,3 @@ class Solution:
             for nei, nprice in graph[node]:
                 heapq.heappush(queue,(fprice + nprice,nei,num+1))
         return -1
-
-            
-            
-        
-        
