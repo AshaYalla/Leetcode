@@ -7,7 +7,6 @@ class Solution:
             
         queue = [(0,src,0)]  
             
-        visited = [float('inf') for i in range(n)]
         stops = [float('inf') for i in range(n)]
         
         while(queue):
