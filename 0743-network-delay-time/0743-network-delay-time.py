@@ -1,5 +1,6 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        #dijkstra
         graph = defaultdict(list)
         for u,v, dist in times:
             graph[u].append((v,dist))
@@ -25,30 +26,7 @@ class Solution:
                 return -1
         return max(dis)
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
         
         #bellmanford
         # dist = [float('inf')]*(n+1)
