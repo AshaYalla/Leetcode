@@ -1,27 +1,39 @@
 class Solution(object):
     def findCircleNum(self, isConnected):
-
         n = len(isConnected)
         parent = [i for i in range(n)]
-
-        def find(x):
-            if parent[x] != x:
-                parent[x] = find(parent[x])
+        rank = [0]*n
+        
+        def findp(x):
+            if x == parent[x]:
+                return x
+            parent[x] = findp(parent[x])
             return parent[x]
-
-        def union(x, y):
-            fa, fb = find(x), find(y)
-            parent[fb] = fa
-
-        for i in range(n):
-            for j in range(n):
-                if isConnected[i][j]:
-                    union(i, j)
+        
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                
+                if isConnected[i][j] == 1 and i!=j:
+                    pi = findp(i)
+                    pj = findp(j)
+                    if pi!= pj:
+                        if rank[pi] == rank[pj]:
+                            rank[pi]+=1
+                            parent[pj] = pi
+                        elif rank[pi] > rank[pj]:
+                            parent[pj] = pi
+                        else:
+                            parent[pi] = pj
         count = 0
-        for i in range(n):
-            if parent[i] == i:
+        for i in range(len(parent)):
+            if i== parent[i]:
                 count+=1
         return count
+                        
+
+                    
+        
+    
 
 
 # class Solution:
