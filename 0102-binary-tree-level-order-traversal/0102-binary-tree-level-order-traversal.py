@@ -8,20 +8,41 @@
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        stack = [root]
-        result = []
-        while(stack):
-            level = []
-            slen = len(stack)
-            for i in range(slen):
-                cur = stack.pop(0)
-                if(cur):
-                    level.append(cur.val)
-                    stack.append(cur.left)
-                    stack.append(cur.right)
-            if(level):
-                result.append(level)
-        return result
+        res = []
+        def dfs(curr):
+            ans = []
+            nextt = []
+            for x in curr:
+                if x:
+                    ans.append(x.val)
+                    nextt.append(x.left)
+                    nextt.append(x.right)
+            if ans:
+                res.append(ans)
+            if nextt:
+                dfs(nextt)
+        dfs([root])
+        return res
+    
+                
+        
+        
+        
+        
+        # stack = [root]
+        # result = []
+        # while(stack):
+        #     level = []
+        #     slen = len(stack)
+        #     for i in range(slen):
+        #         cur = stack.pop(0)
+        #         if(cur):
+        #             level.append(cur.val)
+        #             stack.append(cur.left)
+        #             stack.append(cur.right)
+        #     if(level):
+        #         result.append(level)
+        # return result
                 
                 
             
