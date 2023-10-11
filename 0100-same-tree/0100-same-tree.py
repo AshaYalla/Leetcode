@@ -1,28 +1,86 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        stack = [p]
-        stack2 = [q]
-
-        while(stack):
-            cur = stack.pop()
-            cur2 = stack2.pop()   
-            
-            if((cur == None and cur2 != None) or (cur != None and cur2 == None)):
+    def isSameTree(self,p, q) -> bool:
+        def dfs(x,y):
+            if x == None and y == None:
+                return True
+            if x == None and y != None:
+                return False
+            if x != None and y == None:
                 return False
             
-            if(cur and cur2):
-                if(cur.val != cur2.val):
-                    return False
-                
-                stack2.append(cur2.left)
-                stack2.append(cur2.right)
-                stack.append(cur.left)
-                stack.append(cur.right)
             
-        return True
+            
+            if x.val != y.val:
+                return False
+            l = dfs(x.left, y.left)
+            r = dfs(x.right,y.right)
+            return l and r
+        return dfs(p,q)
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         if p==None and q==None:
+#             return True
+#         elif p==None or q==None:
+#             return False
+
+#         que_p=deque([p])
+#         que_q=deque([q])
+
+#         while(que_p):
+#             node_p=que_p.pop()
+#             node_q=que_q.pop()
+
+#             if  node_p.left!=None and node_q.left==None or node_p.left==None and node_q.left !=None:
+#                 return False
+#             if node_p.right!=None and node_q.right==None or node_p.right==None and node_q.right !=None:
+#                 return False
+#             if node_p.val!= node_q.val:
+#                 return False
+            
+#             if node_p.left and node_q.left:
+#                 que_p.append(node_p.left)
+#                 que_q.append(node_q.left)
+#             if node_p.right and node_q.right:
+#                 que_p.append(node_p.right)
+#                 que_q.append(node_q.right)
+#         return True
