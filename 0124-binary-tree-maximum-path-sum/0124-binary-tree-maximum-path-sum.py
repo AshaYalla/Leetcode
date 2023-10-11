@@ -8,8 +8,8 @@ class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         if root == None:
             return root
-        if root.left == None and root.right == None:
-            return root.val
+        # if root.left == None and root.right == None:
+        #     return root.val
         self.maxx = -float('inf')
         
         def dfs(x):
