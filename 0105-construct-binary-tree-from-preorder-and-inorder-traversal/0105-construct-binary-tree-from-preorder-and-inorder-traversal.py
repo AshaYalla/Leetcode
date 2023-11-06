@@ -1,17 +1,13 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-        # print(preorder, inorder)
-        if len(inorder) == 0: #1
+
+        if len(preorder) == 0 or len(inorder) == 0:
             return None
+        root = preorder[0]
+        ind = inorder.index(root)
         
-        if len(preorder) == 1: #2
-            return TreeNode(preorder[0])
-        
-        
-        ind = inorder.index(preorder.pop(0)) #3
-        node = TreeNode(inorder[ind])
-        
-        node.left = self.buildTree(preorder, inorder[:ind]) #4
-        node.right = self.buildTree(preorder, inorder[ind+1:]) #5
-     
+        node = TreeNode(root)
+        node.left = self.buildTree(preorder[1:ind+1], inorder[0:ind])
+        node.right = self.buildTree(preorder[ind+1:], inorder[ind+1:])
         return node
+
