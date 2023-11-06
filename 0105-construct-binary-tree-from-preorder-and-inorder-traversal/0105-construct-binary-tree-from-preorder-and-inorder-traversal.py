@@ -7,6 +7,7 @@ class Solution:
         if len(preorder) == 1: #2
             return TreeNode(preorder[0])
         
+        
         ind = inorder.index(preorder.pop(0)) #3
         node = TreeNode(inorder[ind])
         
