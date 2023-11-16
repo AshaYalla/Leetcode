@@ -9,19 +9,32 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        self.prev = None
-        def flattens(root):
-            if root == None:
-                return
+        stack = [root]
+        while stack:
+            cur = stack.pop()
+            if cur:
+                if cur.right:
+                    stack.append(cur.right)
+                if cur.left:
+                    stack.append(cur.left)
+                if stack:
+                    cur.right = stack[-1]
+                cur.left = None
+        
+        
+#         self.prev = None
+#         def flattens(root):
+#             if root == None:
+#                 return
 
-            cur = root
-            flattens(cur.right)
-            flattens(cur.left)
+#             cur = root
+#             flattens(cur.right)
+#             flattens(cur.left)
 
-            cur.left = None
-            cur.right = self.prev
-            self.prev = cur
-            return cur
-        flattens(root)
+#             cur.left = None
+#             cur.right = self.prev
+#             self.prev = cur
+#             return cur
+#         flattens(root)
             
         
