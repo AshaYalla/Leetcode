@@ -9,17 +9,42 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        stack = [root]
-        while stack:
-            cur = stack.pop()
-            if cur:
-                if cur.right:
-                    stack.append(cur.right)
-                if cur.left:
-                    stack.append(cur.left)
-                if stack:
-                    cur.right = stack[-1]
-                cur.left = None
+        #morristraversal
+        
+
+        cur = root
+        while(cur!=None):
+            if cur.left == None:
+                cur = cur.right
+            else:
+                node = cur.left 
+                while(node.right and node.right != cur):
+                    node = node.right
+                if node.right == None:
+                    node.right = cur.right
+                    cur.right = cur.left
+                    leftt = cur.left
+                    cur.left = None
+                    cur = leftt
+                else:
+                    node.right = None
+                    cur = cur.right
+
+
+        
+        
+        
+#         stack = [root]
+#         while stack:
+#             cur = stack.pop()
+#             if cur:
+#                 if cur.right:
+#                     stack.append(cur.right)
+#                 if cur.left:
+#                     stack.append(cur.left)
+#                 if stack:
+#                     cur.right = stack[-1]
+#                 cur.left = None
         
         
 #         self.prev = None
