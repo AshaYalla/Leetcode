@@ -16,22 +16,15 @@ class Solution:
             root = self.searchBST(root.left,val)
             
         return root
-#         if root is None or val == root.val:
-#         return root
 
-#        if val < root.val:
-#              return self.searchBST(root.left, val) 
-#         else:
-#             return self.searchBST(root.right, val)
         
         
-        
-        # while(root!=None and root.val!= val):
-        #     if root.val < val:
-        #         root = root.right
-        #     else:
-        #         root = root.left
-        # return root
+        while(root!=None and root.val!= val):
+            if root.val < val:
+                root = root.right
+            else:
+                root = root.left
+        return root
     
             
         
