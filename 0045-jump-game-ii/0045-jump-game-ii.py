@@ -1,16 +1,19 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        start , stop = 0 , 0 
-        far = 0
+        maxx = nums[0]
+        cur_end = 0
         ans = 0
         
-        for i in range(len(nums) -1 ):
-            far = max(far, i+nums[i])
+        for i in range(len(nums)-1):
+            if maxx < i:
+                return False
+            maxx = max(maxx, i+nums[i])
             
-            if i == stop:
+            if i == cur_end:
                 ans+=1
-                stop = far
+                cur_end = maxx
+                
+            
+            
         return ans
-            
-            
-        
+                    
