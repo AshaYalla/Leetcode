@@ -8,22 +8,24 @@
 
 
 class Solution:
+    
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        cur = root
+        stack = []
         ans = []
-        def demo(root):
-            if root:
-                if root.left:
-                    demo(root.left)
-
-                ans.append(root.val)
-                if root.right:
-                    demo(root.right)
-            
-        demo(root)
+        while(cur or stack):
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop(-1)
+            ans.append(cur.val)
+            cur = cur.right
         return ans
             
+
             
-    
+            
+
         
         
         
@@ -31,7 +33,20 @@ class Solution:
         
         
         
-        
+#         ans = []
+#         def demo(root):
+#             if root:
+#                 if root.left:
+#                     demo(root.left)
+
+#                 ans.append(root.val)
+#                 if root.right:
+#                     demo(root.right)
+            
+#         demo(root)
+#         return ans
+            
+            
         
         
         
