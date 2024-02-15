@@ -20,29 +20,6 @@ class Solution:
 
         return root 
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 #         stack = [root]
 #         while(stack):
 #             cur = stack.pop()
