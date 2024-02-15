@@ -8,24 +8,72 @@
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        res = []
-        def dfs(curr):
-            ans = []
-            nextt = []
-            for x in curr:
+        
+        stack = [root]
+        ans = []
+        
+        while(stack):
+            level = []
+            for i in range(len(stack)):
+                x = stack.pop(0)
                 if x:
-                    ans.append(x.val)
-                    nextt.append(x.left)
-                    nextt.append(x.right)
-            if ans:
-                res.append(ans)
-            if nextt:
-                dfs(nextt)
-        dfs([root])
-        return res
-    
+                    level.append(x.val)
+                    stack.append(x.left)
+                    stack.append(x.right)
+            if level:
+                ans.append(level)
+        return ans
+                
+                
                 
         
+        
+        # ans = []
+        # def dfs(curr):
+        #     level = []
+        #     nextt = []
+        #     for x in curr:
+        #         if x:
+        #             level.append(x.val)
+        #             nextt.append(x.left)
+        #             nextt.append(x.right)
+        #     if level:
+        #         ans.append(level)
+        #     if nextt:
+        #         dfs(nextt)
+        # dfs([root])
+        # return ans
+                    
+                
+            
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+#         res = []
+#         def dfs(curr):
+#             ans = []
+#             nextt = []
+#             for x in curr:
+#                 if x:
+#                     ans.append(x.val)
+#                     nextt.append(x.left)
+#                     nextt.append(x.right)
+#             if ans:
+#                 res.append(ans)
+#             if nextt:
+#                 dfs(nextt)
+#         dfs([root])
+#         return res
+    
         
         
         
