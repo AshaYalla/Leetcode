@@ -10,6 +10,7 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+
         if head is None:
             return head
         dictt = {None:None}
