@@ -8,17 +8,14 @@ class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         stack = []
         cur = root
-        while(stack or cur):
-            if(cur):
+        order = 0
+        while(cur or stack):
+            while cur:
                 stack.append(cur)
                 cur = cur.left
-            else:
-                cur = stack.pop()
-                k -=1
-                if(k == 0):
-                    return cur.val
-                cur = cur.right
-                
-            
-        
-        
+            cur = stack.pop()
+            order +=1
+            if order == k:
+                return cur.val
+            cur = cur.right
+        return res
