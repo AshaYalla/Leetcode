@@ -28,33 +28,7 @@ class Solution:
                         dictt[n].neighbors.append(dictt[i])
                     visited.add(n.val)
             return dictt[node]
-                
-    
-                    
-                
-                
-                
-                    
-                    
-                
-                
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+ 
             
 #         visited = {}
 #         def dfs(n):
