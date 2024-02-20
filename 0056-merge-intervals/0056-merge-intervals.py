@@ -12,6 +12,6 @@ class Solution:
             elif(intervals[i][0] <= end and intervals[i][1] > end):
                 end = intervals[i][1]
         ans.append([start,end])
-        return(ans)
+        return(ans) 
                 
         
