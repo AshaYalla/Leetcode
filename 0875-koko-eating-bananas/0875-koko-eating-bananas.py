@@ -9,10 +9,12 @@ class Solution:
             hours = 0
             for i in piles:
                 hours += math.ceil(i/mid)
-            if hours <= h:
-                r = mid
-            else:
+            if hours > h:
                 l = mid + 1
+                
+            else:
+                r = mid
+                
                 
         return l
                 
