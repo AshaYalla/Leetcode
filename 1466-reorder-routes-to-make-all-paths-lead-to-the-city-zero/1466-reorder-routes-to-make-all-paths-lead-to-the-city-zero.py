@@ -27,23 +27,21 @@ class Solution:
         for a, b in connections:
             neighbour[a].append(b)
             neighbour[b].append(a)
+        self.ans = 0
 
 
-        def dfs(i, changes):
+        def dfs(i):
             
             for nei in neighbour[i]:
                 if nei in visited:
                     continue
                 if (i, nei) in edges:
-                    changes += 1
+                    self.ans += 1
                 visited.add(i)
-                changes = dfs(nei, changes)
+                dfs(nei)
+        dfs(0)
 
-            return changes
-
-        changes = dfs(0, changes)
-
-        return changes
+        return self.ans
 
 
 
