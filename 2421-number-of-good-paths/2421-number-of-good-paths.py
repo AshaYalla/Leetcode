@@ -25,23 +25,28 @@ class Solution:
                 parent[pj] = pi
                 rank[pi]+= rank[pj]
             return True
-         
+        
+        # create a adjacency list. 
         graph = defaultdict(list)    
         for i,j in edges:
             graph[i].append(j)
             graph[j].append(i)
         
+        # dictt to track the common value nodes
         dictt = defaultdict(list)
         res = 0
         for i,j in enumerate(vals):
             dictt[j].append(i)
         
+        # find if they belong to same set using union find
         for val in sorted(dictt.keys() ):
             for node in dictt[val]:
                 for nei in graph[node]:
                     if vals[nei] <= vals[node]:
                         union(node,nei)
             counter = defaultdict(int)
+            
+            #find the parent of each node and if they belong to same set increment the result accordingly
             for node in dictt[val]:
                 par = findparent(node)
                 counter[par]+=1
