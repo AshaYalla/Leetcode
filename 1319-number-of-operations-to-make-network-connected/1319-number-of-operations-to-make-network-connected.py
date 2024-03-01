@@ -36,10 +36,7 @@ class Solution:
         for i,j in connections:
             pi = findp(i) 
             pj = findp(j)
-            if pi == pj:
-                redundency +=1
-            else:
-                parent[pj] = pi
+            parent[pj] = pi
         
         count = 0
                 
