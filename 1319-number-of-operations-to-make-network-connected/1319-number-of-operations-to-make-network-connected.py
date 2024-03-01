@@ -46,9 +46,9 @@ class Solution:
         for i in range(len(parent)) :
             if i == parent[i]:
                 count+=1
-        count -=1
+
         
-        return count
+        return count -1
                 
                 
                 
