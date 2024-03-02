@@ -1,26 +1,37 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
+
+        n = len(nums)
         ans = []
-        def solve(path, nums):
-            if not nums:
-                ans.append(path)
+        def solve(nums,i):
+            if i == n:
+                ans.append(nums[:])
                 return
-            for i in nums:
-                solve(path+nums[i], nums[:i]+ nums[i+1:])
-            
-        solve([], nums)
+            for j in range(i,n):
+                nums[i], nums[j] = nums[j], nums[i]
+                solve(nums, i+1)
+                nums[i], nums[j] = nums[j], nums[i]
+        solve(nums,0)
         return ans
+
+                
         
         
         
         
         
         
-        
-        
-        
-        
-        
+#         ans = []
+#         def solve(path, nums):
+#             if not nums:
+#                 ans.append(path)
+#                 return
+#             for i in nums:
+#                 solve(path+nums[i], nums[:i]+ nums[i+1:])
+            
+#         solve([], nums)
+#         return ans
+
         
 #         n = len(nums)
 #         ans = []
@@ -42,20 +53,20 @@ class Solution:
     
     
     
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        n = len(nums)
-        ans = []
-        def solve(i,path):
-            if i == n:
-                ans.append(path[:])
-                return
-            for j in nums:
-                if j not in path:
-                    path.append(j)
-                    solve(i+1,path)
-                    path.pop()
-        solve(0,[])
-        return ans
+#     def permute(self, nums: List[int]) -> List[List[int]]:
+#         n = len(nums)
+#         ans = []
+#         def solve(i,path):
+#             if i == n:
+#                 ans.append(path[:])
+#                 return
+#             for j in nums:
+#                 if j not in path:
+#                     path.append(j)
+#                     solve(i+1,path)
+#                     path.pop()
+#         solve(0,[])
+#         return ans
     
     
     
