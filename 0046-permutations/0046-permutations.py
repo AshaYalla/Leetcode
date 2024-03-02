@@ -13,5 +13,3 @@ class Solution:
                     path.pop()
         solve(0,[])
         return ans
-            
-        
