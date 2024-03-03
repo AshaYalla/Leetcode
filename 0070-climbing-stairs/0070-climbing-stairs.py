@@ -1,15 +1,44 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        prev = 1
-        cur = 1
-        ans = 1
-        
-        for i in range(2,n+1):
-            ans = prev + cur
-            prev = cur
-            cur = ans
+        dp = [-1] * n
+        def solve(x):
+            if x == n:
+                return 1
+            if x > n:
+                return 0
+            if dp[x] != -1:
+                return dp[x]
             
-        return ans
+            l = solve(x+1)
+            r = solve(x+2)
+            dp[x] = l+r
+            return l+r
+            
+            
+        return solve(0)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         prev = 1
+#         cur = 1
+#         ans = 1
+        
+#         for i in range(2,n+1):
+#             ans = prev + cur
+#             prev = cur
+#             cur = ans
+            
+#         return ans
 #         dp = [0]*(n+1)
 #         dp[0] = dp[1] = 1
         
