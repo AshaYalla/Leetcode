@@ -1,5 +1,19 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
+        m , n = len(grid) , len(grid[0])
+        
+        dp = [[inf for i in range(n)] for j in range(m)]
+
+
+        for r in range(m):
+            for c in range(n):
+                if r == 0 and c == 0:
+                    dp[r][c] = grid[r][c]
+                    continue
+                dp[r][c] = grid[r][c] + min(dp[r-1][c],dp[r][c-1])
+        return dp[-1][-1]
+    
+    
         m = len(grid)
         n = len(grid[0])
         dp = dict()
