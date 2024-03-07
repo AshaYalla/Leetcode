@@ -1,32 +1,40 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        a = len(triangle)
-        b = len(triangle)
-        dp = dict()
-        def solve(i,j):
-            if  i == 0:
-                return triangle[0][0]
-            if (i,j) in dp:
-                return dp[(i,j)]
-            if j > i or j < 0:
-                return inf
-            dp[(i,j)] = triangle[i][j] + min(solve(i-1,j), solve(i-1,j-1))
-            return dp[(i,j)]
+
+        n = len(triangle)
+        dp = [[0] * n for _ in range(n)]
+        dp[0] = triangle[0]
+        for i in range(1, n):
+            for j in range(i + 1):
+                if j == 0:
+                    dp[i][j] = triangle[i][j] + dp[i - 1][j]
+                elif j == i:
+                    dp[i][j] = triangle[i][j] + dp[i - 1][j - 1]
+                else:
+                    upper_left = triangle[i][j] + dp[i - 1][j - 1]
+                    upper_right = triangle[i][j] + dp[i - 1][j]
+                    dp[i][j] = min(upper_left, upper_right)
+
+        return min(dp[n - 1])
         
-        minn = inf
         
-        for j in range(b):
-            minn = min(minn, solve(a-1,j))
-        return minn
+        
+        
+        # dp = [[0 for i in range(j)] for j in range(1,len(triangle)+1)]
+
+        
+#         def dfs(i, j):
+#             if i == len(triangle):
+#                 return 0
+#             if dp[i][j] != 0:
+#                 return dp[i][j]
+
+#             lower_left = triangle[i][j] + dfs(i + 1, j)
+#             lower_right = triangle[i][j] + dfs(i + 1, j + 1)
+#             dp[i][j]  = min(lower_left, lower_right)
+
+#             return dp[i][j] 
+
+#         return dfs(0, 0)
             
-            
-            
-            
-            
-            # if i == m:
-            #     return min(triangle[i][j], triangle[i][j+1] if j < n -1 else 0)
-            # if j > i+1:
-            #     return 0
-            # triangle
-            
-            
+    
