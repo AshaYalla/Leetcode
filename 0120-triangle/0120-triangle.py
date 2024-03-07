@@ -1,7 +1,7 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         a = len(triangle)
-        b = len(triangle[-1])
+        b = len(triangle)
         dp = dict()
         def solve(i,j):
             if  i == 0:
