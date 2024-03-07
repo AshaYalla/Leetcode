@@ -1,45 +1,26 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
+
+        nums.sort()
         n = len(nums)
-        dictt = {}
-        
-        def summ(i,rem):
-            if i == n: 
-                if rem == target:
+
+        dp = dict()
+        mod=10**9+7
+
+        #recursion
+        def recursion(i,k):
+            if i == n:
+                if k == 0:
                     return 1
                 else:
-                    return 0 
-            if (i,rem) in dictt:
-                return dictt[(i,rem)]
-            c1 = summ(i+1,rem + nums[i])
-            c2 = summ(i+1,rem - nums[i])
-            c = c1 + c2
-            dictt[(i, rem)] = c
-            return c1+ c2
-            
-        return summ(0,0)
-    
-    
-#     	arr.sort()
-# 	    dp = dict()
-# 	    mod=10**9+7
-		
-# 		#recursion
-#         def recursion(i,k):
-#             if i == n:
-#                 if k == 0:
-#                     return 1
-#                 else:
-#                     return 0
-#             if (i,k) in dp:
-#                 return dp[(i,k)]
-            
-#             summ =  recursion(i+1,k)
-#             if arr[i] <= k:
-#                 summ += recursion(i+1,k-arr[i])
-#             dp[(i,k)] = summ 
-#             return summ
-#         return recursion(0,sum) %mod
+                    return 0
+            if (i,k) in dp:
+                return dp[(i,k)]
+
+            summ =  recursion(i+1,k + nums[i]) + recursion(i+1,k-nums[i])
+            dp[(i,k)] = summ 
+            return summ
+        return recursion(0,target) %mod
         
 #         #tabulation
     
