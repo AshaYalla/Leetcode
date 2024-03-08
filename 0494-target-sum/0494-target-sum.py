@@ -17,6 +17,25 @@
 #         return dp[-1][-1]
         
 class Solution:
+    def findTargetSumWays(nums, target):
+        n = len(nums)
+        dp = [[0] * (2 * target + 1) for _ in range(n + 1)]
+
+        # Initialize base case
+        for j in range(2 * target + 1):
+            if j == target:
+                dp[n][j] = 1
+
+        # Build the table bottom-up
+        for i in range(n - 1, -1, -1):
+            for summ in range(2 * target + 1):
+                if summ - nums[i] >= 0:
+                    dp[i][summ] += dp[i + 1][summ - nums[i]]
+                if summ + nums[i] <= 2 * target:
+                    dp[i][summ] += dp[i + 1][summ + nums[i]]
+
+        return dp[0][target]
+
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
         total = sum(nums)
         dp = [[0] * (2 * total + 1) for _ in range(len(nums))]
@@ -34,22 +53,22 @@ class Solution:
         
         
         
-#         def solve(i,summ):
+        def solve(i,summ):
             
-#             if i == len(nums):
-#                 if summ == target:
-#                     return 1
-#                 else:
-#                     return 0
-            
-            
-#             neg = solve(i+1,summ -nums[i])
-#             pos = solve(i+1, summ + nums[i])
-            
-#             return neg + pos
+            if i == len(nums):
+                if summ == target:
+                    return 1
+                else:
+                    return 0
             
             
-#         return solve(0, 0)
+            neg = solve(i+1,summ -nums[i])
+            pos = solve(i+1, summ + nums[i])
+            
+            return neg + pos
+            
+            
+        return solve(0, 0)
             
         
         
