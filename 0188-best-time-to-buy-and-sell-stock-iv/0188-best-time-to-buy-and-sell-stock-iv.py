@@ -1,7 +1,6 @@
 # class Solution:
 #     def maxProfit(self, k: int, prices: List[int]) -> int:
 #         dp = [[[-1 for _ in range(k + 1)] for _ in range(3)] for _ in range(len(prices) + 1)]
-#         profit = 0
 #         def solve(i, buy, cap):
 #             if i >= len(prices) or cap <= 0:
 #                 return 0
@@ -9,13 +8,12 @@
 #                 return dp[i][buy][k]
 
 #             if buy:
-#                 profit = max(- prices[i] + solve(i+1,0,cap), solve(i+1,1,cap))
+#                 dp[i][buy][k] = max(- prices[i] + solve(i+1,0,cap), solve(i+1,1,cap))
 #             else:
-#                 profit = max( prices[i] + solve(i+1,1,cap -1), solve(i+1,0,cap))
-#             dp[i][buy][k] = profit
+#                 dp[i][buy][k] = max( prices[i] + solve(i+1,1,cap -1), solve(i+1,0,cap))
+            
 #             return dp[i][buy][k]
 #         return solve(0,1,k)
-    
     
 class Solution:
     def recursion_with_memoization(self, p, ind, can_buy, k, dp):
