@@ -1,10 +1,9 @@
 class Solution:
     def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
 
-        mp = {}
+        mp = defaultdict(list)
         for t, u, w in sorted(zip(timestamp, username, website)): 
-            mp.setdefault(u, []).append(w)
-        
+            mp[u].append(w)
         freq = defaultdict(int)
         for key, val in mp.items(): 
             seen = set()
@@ -15,8 +14,6 @@ class Solution:
             for x in seen: freq[x] += 1
         
         return min(freq, key=lambda x: (-freq[x], x))
-        
-        
         
         
         
