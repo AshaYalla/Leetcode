@@ -1,7 +1,6 @@
 class Solution:
     def suggestedProducts(self, products, searchWord):
         products.sort() # time O(nlogn)
-        array_len = len(products)
         ans = []
         input_char = ""
 
@@ -18,10 +17,12 @@ class Solution:
 
     def binary_search(self, array, target):
         lo = 0
-        hi = len(array)
+        hi = len(array) -1
 
         while lo < hi:
             mid = (lo + hi) //2
-            if array[mid] < target: lo = mid + 1
-            else: hi = mid
+            if array[mid] < target: 
+                lo = mid + 1
+            else: 
+                hi = mid
         return lo
