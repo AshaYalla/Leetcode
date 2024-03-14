@@ -1,22 +1,23 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        count = collections.Counter(s)
-        prev = None
-        maxheap = [[-j,i] for i,j in count.items()]
-        heapq.heapify(maxheap)
-        res = ""
-        
-        while(maxheap or prev):
-            if(prev and not maxheap):
-                return ""
-            a,b = heapq.heappop(maxheap)
-            res+=b
-            a+=1
-            if(prev):
-                heapq.heappush(maxheap,prev)
-                prev = None
-            if a!=0:
-                prev = [a,b]
-        return res
+        ans = []
+        pq = [(-count, char) for char, count in Counter(s).items()]
+        heapify(pq)
+
+        while pq:
+            count_first, char_first = heappop(pq)
+            if not ans or char_first != ans[-1]:
+                ans.append(char_first)
+                if count_first + 1 != 0: 
+                    heappush(pq, (count_first + 1, char_first))
+            else:
+                if not pq: return ''
+                count_second, char_second = heappop(pq)
+                ans.append(char_second)
+                if count_second + 1 != 0:
+                    heappush(pq, (count_second + 1, char_second))
+                heappush(pq, (count_first, char_first))
+
+        return ''.join(ans)
             
         
