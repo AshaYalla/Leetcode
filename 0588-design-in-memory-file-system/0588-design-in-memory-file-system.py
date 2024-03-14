@@ -18,7 +18,7 @@ class FileSystem:
         for p in path_lst:
             if not p:
                 continue
-            node = node.children.get(p)
+            node = node.children[p]
         if node.isfile:
             return [p]
         ans = [i for i in node.children.keys()]
