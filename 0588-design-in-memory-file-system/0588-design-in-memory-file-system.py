@@ -1,3 +1,6 @@
+#if LLD 
+# https://leetcode.com/problems/design-in-memory-file-system/discuss/1083311/LLD-Design-or-Factory-Pattern-or-Interviewer-Expectations
+
 class TrieNode:
     def __init__(self):
         self.content = ""
