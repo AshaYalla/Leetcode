@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/plates-between-candles/discuss/1549015/Python3-binary-search-and-O(N)-approach
 class Solution:
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
         candies = [i for i, c in enumerate(s) if c == "|"]
