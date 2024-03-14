@@ -52,7 +52,7 @@ class FileSystem:
         for p in path_lst:
             if not p:
                 continue
-            node = node.children.get(p)
+            node = node.children[p]
         return node.content
         
 
