@@ -1,25 +1,24 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rowdict = defaultdict(list)
-        coldict = defaultdict(list)
-        boxdict = defaultdict(list)
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if board[i][j] == ".":
-                    continue
-                if board[i][j] in rowdict[i]:
-                    print("a")
-                    return False
-                rowdict[i].append(board[i][j])
-                if board[i][j] in coldict[j]:
-                    print("b")
-                    return False
-                coldict[j].append(board[i][j])
-                if board[i][j] in boxdict[(i//3 , j//3)]:
-                    print("c")
-                    return False
-                boxdict[(i//3 , j//3)].append(board[i][j])
-
-        return True
-                
+        rowdictt = defaultdict(list)
+        coldictt = defaultdict(list)
+        boxdictt = defaultdict(list)
         
+        
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                ele = board[r][c]
+                if ele != '.':
+                    if ele in rowdictt[r]:
+                        return False
+                    rowdictt[r].append(ele)
+                    if ele in coldictt[c]:
+                        return False
+                    coldictt[c].append(ele)
+                    if ele in boxdictt[(r//3, c//3)]:
+                        return False
+                    boxdictt[(r//3, c//3)].append(ele)
+        return True
+                    
+                    
+            
