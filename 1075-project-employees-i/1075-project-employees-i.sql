@@ -1,5 +1,5 @@
-Select project_id, round(avg(experience_years*1.0),2)
-average_years 
-from project p 
-inner join employee e 
-on p.employee_id = e.employee_id group by project_id;
+select project_id,round(avg(cast(experience_years as decimal(10,2))),2) as average_years from Project a
+join Employee b
+on a.employee_id=b.employee_id
+group by project_id
+order by project_id 
