@@ -1,10 +1,8 @@
-with a as ( 
-select project_id
-, count(employee_id)cnt
-from project
 
-group by project_id)
 
-select project_id 
-from a
-where cnt = (select max(cnt)from a)
+DECLARE @MaxProjectCount INT = (SELECT TOP 1 COUNT(*) as count_of_employee FROM Project GROUP BY project_id ORDER BY count_of_employee DESC)
+
+SELECT project_id
+FROM Project
+GROUP BY project_id
+HAVING COUNT(*) = @MaxProjectCount
