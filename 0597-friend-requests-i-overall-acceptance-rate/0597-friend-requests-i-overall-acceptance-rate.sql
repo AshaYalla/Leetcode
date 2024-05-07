@@ -12,4 +12,5 @@ CAST(
 /
 NULLIF((SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM FriendRequest) R),0)
 as DECIMAL(3,2)),0.0) as accept_rate
-    
+
+-- https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate/discuss/1513054/SQL-Server-2-Follow-up-Questions-sum()-over()-to-get-cumulative-sum
