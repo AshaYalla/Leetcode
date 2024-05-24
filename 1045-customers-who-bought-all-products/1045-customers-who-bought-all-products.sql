@@ -1,8 +1,8 @@
-# Write your MySQL query statement below
-SELECT customer_id
-FROM Customer c1
-GROUP BY customer_id
-HAVING COUNT(DISTINCT(c1.product_key)) = (
-    SELECT COUNT(p.product_key) AS total_products_bought
-    FROM Product p
-)
+/* Write your T-SQL query statement below */
+DECLARE @counter INT;
+SELECT @counter = COUNT(* ) FROM product;
+
+select customer_id 
+from customer
+group by customer_id
+having count(distinct product_key) = @counter
