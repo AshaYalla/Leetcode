@@ -1,17 +1,21 @@
-SELECT DISTINCT pay_month, department_id, 
-(
-    CASE
-    WHEN avg_dept_sal > avg_company_sal THEN 'higher'
-    WHEN avg_dept_sal < avg_company_sal THEN 'lower'
-    WHEN avg_dept_sal = avg_company_sal THEN 'same'
-    END
-) as comparison
+WITH CTE AS 
+(SELECT
+FORMAT(PAY_DATE,'yyyy-MM') AS pay_month
+,E.DEPARTMENT_ID
+,AVG(AMOUNT) OVER(PARTITION BY FORMAT(PAY_DATE,'yyyy-MM'),E.DEPARTMENT_ID ) AS DEP_AVG
+,AVG(AMOUNT) OVER(PARTITION BY FORMAT(PAY_DATE,'yyyy-MM') ) AS COMPANY_AVG
+FROM SALARY S JOIN EMPLOYEE E
+    ON S.EMPLOYEE_ID = E.EMPLOYEE_ID)
 
-FROM 
-(
-    SELECT distinct department_id, LEFT(s.pay_date, 7) as pay_month,
-     AVG(s.amount) OVER(PARTITION BY s.pay_date) as avg_company_sal,
-     AVG(s.amount) OVER(PARTITION BY s.pay_Date, e.department_id) as avg_dept_sal
-    FROM Salary s
-    JOIN Employee e ON s.employee_id = e.employee_id
-) as tmp;
+-- SELECT  FROM CTE;
+
+SELECT
+DISTINCT pay_month
+,DEPARTMENT_ID as department_id
+,CASE 
+    WHEN DEP_AVG > COMPANY_AVG THEN 'higher'
+    WHEN DEP_AVG < COMPANY_AVG THEN 'lower'
+    else 'same'
+end as comparison
+FROM CTE
+order by pay_month desc
