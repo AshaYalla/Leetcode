@@ -51,9 +51,9 @@ cte4 as (
     employee_id,
     floor(sum(iif(
       base_task_id = pair_task_id,
-      datediff(second, base_start_time, base_end_time),
-      -datediff(second, pair_start_time, base_end_time)
-    )) / 60 / 60) as total_task_hours
+      datediff(minute, base_start_time, base_end_time),
+      -datediff(minute, pair_start_time, base_end_time)
+    )) / 60) as total_task_hours
   from
     cte
   group by
