@@ -16,6 +16,7 @@ with cte as (
     -- Find overlap and non-overlap itself
     and a.start_time <= b.start_time
     and b.start_time < a.end_time
+    
 ),
 
 -- Count concurrent tasks
@@ -51,7 +52,6 @@ cte4 as (
     floor(sum(iif(
       base_task_id = pair_task_id,
       datediff(second, base_start_time, base_end_time),
-      -- Overlap time needs to subtract
       -datediff(second, pair_start_time, base_end_time)
     )) / 60 / 60) as total_task_hours
   from
