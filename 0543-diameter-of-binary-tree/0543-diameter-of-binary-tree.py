@@ -9,16 +9,16 @@ class Solution:
         if not root:
             return 0
         self.maxx = 0
-        
-        def solve(root):
-            if not root:
+        def dfs(x):
+            if x is None:
                 return -1
-            if root:
-                l = solve(root.left) +1
-                r = solve(root.right) + 1
-            self.maxx = max(self.maxx, l+r)
-            return max(l,r)
-        solve(root)
+            if x:
+                l = dfs(x.left) + 1
+                r = dfs(x.right) + 1
+                self.maxx = max(self.maxx, l+r)
+                return max(l,r)
+        dfs(root)
         return self.maxx
-            
+                
+
             
