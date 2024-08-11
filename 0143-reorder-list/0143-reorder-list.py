@@ -27,4 +27,4 @@ class Solution:
             prev.next = nxt
             prev = prevnxt
             cur = nxt
-  
+ 
